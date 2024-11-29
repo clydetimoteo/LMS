@@ -1,13 +1,18 @@
 <?php
-$servername = "localhost"; // or your server name
-$username = "root";        // your database username
-$password = "";            // your database password
-$dbname = "library_db";     // your database name
+// db_connection.php
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Database connection parameters
+$hostname = "localhost";  // Usually 'localhost' if the database is on the same server
+$username = "root";       // Your database username (default is 'root' for local development)
+$password = "";           // Your database password (leave empty if no password set)
+$database = "library_db"; // The name of your database
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Establish the connection to the MySQL database
+$db = mysqli_connect($hostname, $username, $password, $database);
+
+// Check if the connection was successful
+if (!$db) {
+    // If the connection failed, display an error and stop further execution
+    die("Connection failed: " . mysqli_connect_error());
 }
+?>
